@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mids_plus"
+version = "0.1.0"
+description = "MIDS++ : a drop-in, generalization-hardened replacement for FFAA's Multi-answer Intelligent Decision System (MIDS)."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.1",
+    "transformers>=4.37",
+    "numpy",
+    "pyyaml",
+    "scikit-learn",
+    "opencv-python",
+    "pillow",
+    "albumentations",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+deepspeed = ["deepspeed"]
+
+[project.scripts]
+mids-pp-train = "mids_plus.train:main"
+mids-pp-eval = "mids_plus.evaluate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
